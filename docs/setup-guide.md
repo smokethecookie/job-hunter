@@ -9,7 +9,9 @@ Step-by-step instructions to get Job Hunter running.
    python3 --version
 ```
 
-2. **VS Code with Claude Code extension**
+2. **macOS** (for native notifications)
+
+3. **VS Code with Claude Code extension**
    - Install VS Code
    - Install Claude Code extension from marketplace
    - Sign in to Claude
@@ -26,7 +28,7 @@ cd job-hunter
 ```bash
 cd mcp-servers/hunter
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate
 ```
 
 ### 3. Install dependencies
@@ -76,6 +78,36 @@ Open Claude Code and type:
 
 You should see `hunter` in the list of connected servers.
 
+## Automation Setup
+
+### Daily Follow-up Reminders
+
+The `automation/reminder.py` script checks for stale applications and shows a macOS notification.
+
+#### Test it manually
+```bash
+cd ~/path/to/job-hunter/automation
+source ../mcp-servers/hunter/venv/bin/activate
+python reminder.py
+```
+
+#### Schedule with cron
+
+Run:
+```bash
+crontab -e
+```
+
+Add this line (runs at 9am daily):
+```
+0 9 * * * /full/path/to/job-hunter/mcp-servers/hunter/venv/bin/python /full/path/to/job-hunter/automation/reminder.py
+```
+
+Verify with:
+```bash
+crontab -l
+```
+
 ## Usage
 
 ### Quick start
@@ -124,7 +156,11 @@ pip install reportlab
 Some sites block scraping. Try:
 - Pasting the job description directly
 - Using "Role @ Company" format instead
+
+### Notifications not appearing
+
+1. Check macOS notification permissions for Terminal/iTerm
+2. Run the script manually to test:
+```bash
+   python automation/reminder.py
 ```
-
----
-
