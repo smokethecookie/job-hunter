@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Personal data - DO NOT COMMIT
+CLAUDE.md
+data/
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
