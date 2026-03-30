@@ -56,7 +56,7 @@ npx @anthropic-ai/claude-code mcp add hunter -s user $(pwd)/venv/bin/python $(pw
 
 ### Full Analysis (recommended)
 ```
-Full analysis: Software Engineer @ Stripe
+Full analysis: Software Engineer @ Company
 ```
 
 or
