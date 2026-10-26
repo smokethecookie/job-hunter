@@ -136,6 +136,19 @@ The tool generates professional PDF reports containing:
 - Contact suggestions
 - Ready-to-send outreach draft
 
+## How I built this
+
+I built Job Hunter with Claude Code as my main development tool. My role was deciding what the tool should do, breaking it into small MCP tools, and reviewing and testing what the agent produced. The agent wrote much of the implementation, and I wrote and reworked parts of it myself.
+
+A few decisions I made along the way:
+
+- **Small, composable tools.** Each step (parse a posting, research a company, compare against my CV, draft outreach, save to the tracker) is its own MCP tool, so I can run the whole pipeline with `full_analysis` or call one step on its own.
+- **A human stays in the loop.** The tool drafts outreach but always asks for my approval before anything is sent.
+- **Personal data stays local.** My CV lives in a git-ignored `CLAUDE.md` and the tracker and reports in a git-ignored `data/` folder, so nothing personal ends up in the repo.
+- **Tested on real use.** I use it in my own job search, from assessing postings to tracking where I've applied.
+
+Later I added tests and a CI pipeline. The first CI run caught a real problem: `mcp` wasn't pinned, and a fresh install pulled version 2, where `FastMCP` no longer exists, so the server would crash on startup for anyone installing it new. I pinned it to `mcp<2`.
+
 ## Testing
 
 Tests cover the application tracker, follow-up reminders and PDF report generation. They run against a temporary data folder, so your own `data/` is never touched.
