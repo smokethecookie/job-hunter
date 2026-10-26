@@ -1,7 +1,7 @@
 import json
 import subprocess
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 APPLICATIONS_FILE = DATA_DIR / "applications.json"

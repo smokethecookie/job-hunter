@@ -2,7 +2,6 @@ from mcp.server.fastmcp import FastMCP
 import httpx
 from bs4 import BeautifulSoup
 import json
-from pathlib import Path
 from datetime import datetime
 from config import PROJECT_ROOT, DATA_DIR
 
@@ -10,9 +9,9 @@ from config import PROJECT_ROOT, DATA_DIR
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_LEFT, TA_CENTER
+from reportlab.lib.enums import TA_CENTER
 
 mcp = FastMCP("hunter")
 
@@ -112,7 +111,7 @@ def generate_pdf_report(
     story = []
     
     # Title
-    story.append(Paragraph(f"Job Application Report", title_style))
+    story.append(Paragraph("Job Application Report", title_style))
     story.append(Paragraph(f"{role} @ {company}", styles['Heading2']))
     story.append(Paragraph(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}", styles['Normal']))
     if job_url:
@@ -510,7 +509,7 @@ def research_company(company_name: str, website_url: str = "") -> str:
                 break
     
     if not results:
-        results.append(f"Could not fetch company website. Please provide the correct URL or search manually.")
+        results.append("Could not fetch company website. Please provide the correct URL or search manually.")
     
     return f"""# Company Research: {company_name}
 

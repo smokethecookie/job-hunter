@@ -1,5 +1,7 @@
 # Job Hunter
 
+[![CI](https://github.com/smokethecookie/job-hunter/actions/workflows/ci.yml/badge.svg)](https://github.com/smokethecookie/job-hunter/actions/workflows/ci.yml)
+
 An MCP-powered job application assistant that automates research, fit analysis, and outreach drafting.
 
 ## What it does
@@ -133,6 +135,18 @@ The tool generates professional PDF reports containing:
 - Fit analysis (matches, gaps, score out of 10)
 - Contact suggestions
 - Ready-to-send outreach draft
+
+## Testing
+
+Tests cover the application tracker, follow-up reminders and PDF report generation. They run against a temporary data folder, so your own `data/` is never touched.
+
+```bash
+pip install pytest ruff
+ruff check .
+pytest -v
+```
+
+GitHub Actions runs the same lint and tests on every push and pull request, on Python 3.11 and 3.12 (`.github/workflows/ci.yml`).
 
 ## License
 
